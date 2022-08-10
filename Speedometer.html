@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> Speedometer the Velocity Converter</title>
+    <style>
+      .body{
+        background-image: linear-gradient(aqua, white);
+            
+        }
+       .box {
+        display: inline-block;
+        position: relative;
+        top: 35%;
+        margin-top: 10%;
+        margin-left: 15%;
+        width: 70%;
+        height: 250px;
+        background-image: linear-gradient(red, yellow);
+        text-align: center;
+        color: darkviolet;
+        font-weight: 900;
+        font-size: large;
+        background-color: blue;
+        border-style: double;
+        background-color: blue;
+        margin-bottom: 250px;
+       } 
+       .button{
+        background-color:maroon;
+        color: chartreuse;
+        font-weight: bold;
+       }
+       .text{
+        position: relative;
+        margin-top: 8%;
+       }
+       
+
+
+
+
+
+    </style>
+</head>
+<body class="body">
+<form class="box" id="speedCal" onsubmit="calculateSpeed(); return false">
+<div class="text">
+<label for="speed" > Please enter the Speed you would like to convert</label><br>
+<input type="number" name="speed" id="speed">
+<select name="velocity_type" id="velocity_type">
+   <option value="kmph">Km Per Hour</option>
+   <option value="mps">Meter Per sec</option>
+</select><br>
+<input type="submit" name="speed" class="button" >
+<span id="resultContainer"></span>
+</div>
+</form>
+
+<script>
+    const calculateSpeed =() => {
+    const numberVelo = document.getElementById('speed').value;
+
+    const veloSelected =document.getElementById('velocity_type');
+    const valueVelo = velocity_type.options[veloSelected.selectedIndex].value;
+
+    const kmtom = (kmph) =>{
+        let meterpersec = Math.round(kmph*1000/3600);
+        return meterpersec;
+    }
+    const mtokm = (mps) =>{
+        let kmperhour = Math.round(mps*3600/1000);
+        return kmperhour;
+    }
+
+    let result;
+    if (valueVelo =='kmph') {
+        result =kmtom(numberVelo);
+        document.getElementById('resultContainer').innerHTML= `= ${result}Meter per sec`
+        
+    } else {
+        result = mtokm(numberVelo);
+        document.getElementById('resultContainer').innerHTML= `= ${result} Km per hour`
+        
+    }
+     
+    }
+   
+</script>
+   
+
+</body>
+</html>
